@@ -52,12 +52,10 @@ namespace Password_keeper.test
 
             mockFileOperator.Setup(f => f.Read(filePath)).Returns(new List<string> { currentPassword });
 
-            var securePassword = new SecurePassword();
-
-            // Mockowanie konsoli
+            var securePassword = new SecurePassword();            
             var consoleInput = new Queue<string>();
-            consoleInput.Enqueue(currentPassword); // User inputs the correct old password
-            consoleInput.Enqueue(newPassword); // User inputs the new password
+            consoleInput.Enqueue(currentPassword);
+            consoleInput.Enqueue(newPassword); 
 
             Console.SetIn(new System.IO.StringReader(string.Join(Environment.NewLine, consoleInput)));
 
@@ -79,11 +77,9 @@ namespace Password_keeper.test
             mockFileOperator.Setup(f => f.Read(filePath)).Returns(new List<string> { currentPassword });
 
             var securePassword = new SecurePassword();
-
-            // Mockowanie konsoli
             var consoleInput = new Queue<string>();
-            consoleInput.Enqueue("wrongPassword"); // User inputs the wrong old password
-            consoleInput.Enqueue("e"); // User exits
+            consoleInput.Enqueue("wrongPassword");
+            consoleInput.Enqueue("e");
 
             Console.SetIn(new System.IO.StringReader(string.Join(Environment.NewLine, consoleInput)));
 
@@ -106,12 +102,10 @@ namespace Password_keeper.test
             mockFileOperator.Setup(f => f.Read(filePath)).Returns(new List<string> { currentPassword });
 
             var securePassword = new SecurePassword();
-
-            // Mockowanie konsoli
             var consoleInput = new Queue<string>();
-            consoleInput.Enqueue("wrongPassword"); // User inputs the wrong old password
-            consoleInput.Enqueue(currentPassword); // User then inputs the correct old password
-            consoleInput.Enqueue(newPassword); // User inputs the new password
+            consoleInput.Enqueue("wrongPassword");
+            consoleInput.Enqueue(currentPassword);
+            consoleInput.Enqueue(newPassword);
 
             Console.SetIn(new System.IO.StringReader(string.Join(Environment.NewLine, consoleInput)));
 
@@ -130,7 +124,6 @@ namespace Password_keeper.test
             var correctSecurePassword = new List<string> { correctPassword };
             var devicePasswords = new List<string> { "Password1", "Password2" };
 
-            // Mockowanie konsoli
             var consoleInput = new Queue<string>();
             consoleInput.Enqueue(correctPassword);
 
@@ -156,7 +149,6 @@ namespace Password_keeper.test
             var correctSecurePassword = new List<string> { correctPassword };
             var devicePasswords = new List<string> { "Password1", "Password2" };
 
-            // Mockowanie konsoli
             var consoleInput = new Queue<string>();
             consoleInput.Enqueue("wrongPassword");
             consoleInput.Enqueue("e");
@@ -182,8 +174,6 @@ namespace Password_keeper.test
             var deviceUsing = new DeviceUsing();
             var devicePasswords = new List<string>();
             var filePath = "testFilePath";
-
-            // Mockowanie konsoli
             var consoleInput = new Queue<string>();
             consoleInput.Enqueue("NewPassword");
             consoleInput.Enqueue("MyApp");
@@ -208,8 +198,6 @@ namespace Password_keeper.test
             var correctSecurePassword = new List<string> { correctPassword };
             var devicePasswords = new List<string> { "Password1", "Password2", "Password3" };
             var filePath = "testFilePath";
-
-            // Mockowanie konsoli
             var consoleInput = new Queue<string>();
             consoleInput.Enqueue(correctPassword);
             consoleInput.Enqueue("2");
@@ -234,8 +222,6 @@ namespace Password_keeper.test
             var correctSecurePassword = new List<string> { correctPassword };
             var devicePasswords = new List<string> { "Password1", "Password2", "Password3" };
             var filePath = "testFilePath";
-
-            // Mockowanie konsoli
             var consoleInput = new Queue<string>();
             consoleInput.Enqueue("wrongPassword");
             consoleInput.Enqueue("e");
@@ -261,12 +247,10 @@ namespace Password_keeper.test
             var correctSecurePassword = new List<string> { correctPassword };
             var devicePasswords = new List<string> { "Password1", "Password2" };
             var filePath = "testFilePath";
-
-            // Mockowanie konsoli
             var consoleInput = new Queue<string>();
-            consoleInput.Enqueue("1"); // Option 1: Show passwords
-            consoleInput.Enqueue(correctPassword); // Provide correct password
-            consoleInput.Enqueue("4"); // Exit after showing passwords
+            consoleInput.Enqueue("1");
+            consoleInput.Enqueue(correctPassword);
+            consoleInput.Enqueue("4");
 
             Console.SetIn(new System.IO.StringReader(string.Join(Environment.NewLine, consoleInput)));
             var consoleOutput = new System.IO.StringWriter();
@@ -292,12 +276,11 @@ namespace Password_keeper.test
             var devicePasswords = new List<string>();
             var filePath = "testFilePath";
 
-            // Mockowanie konsoli
             var consoleInput = new Queue<string>();
-            consoleInput.Enqueue("2"); // Option 2: Add new password
+            consoleInput.Enqueue("2"); 
             consoleInput.Enqueue("NewPassword");
             consoleInput.Enqueue("MyApp");
-            consoleInput.Enqueue("4"); // Exit after adding password
+            consoleInput.Enqueue("4");
 
             Console.SetIn(new System.IO.StringReader(string.Join(Environment.NewLine, consoleInput)));
 
@@ -320,12 +303,11 @@ namespace Password_keeper.test
             var devicePasswords = new List<string> { "Password1", "Password2", "Password3" };
             var filePath = "testFilePath";
 
-            // Mockowanie konsoli
             var consoleInput = new Queue<string>();
-            consoleInput.Enqueue("3"); // Option 3: Remove password
-            consoleInput.Enqueue(correctPassword); // Provide correct password
-            consoleInput.Enqueue("2"); // Choose to remove second password
-            consoleInput.Enqueue("4"); // Exit after removing password
+            consoleInput.Enqueue("3");
+            consoleInput.Enqueue(correctPassword); 
+            consoleInput.Enqueue("2"); 
+            consoleInput.Enqueue("4"); 
 
             Console.SetIn(new System.IO.StringReader(string.Join(Environment.NewLine, consoleInput)));
 
@@ -348,9 +330,8 @@ namespace Password_keeper.test
             var devicePasswords = new List<string> { "Password1", "Password2", "Password3" };
             var filePath = "testFilePath";
 
-            // Mockowanie konsoli
             var consoleInput = new Queue<string>();
-            consoleInput.Enqueue("4"); // Option 4: Exit
+            consoleInput.Enqueue("4");
 
             Console.SetIn(new System.IO.StringReader(string.Join(Environment.NewLine, consoleInput)));
 
@@ -358,8 +339,6 @@ namespace Password_keeper.test
             deviceTemplate.UseOfDevice(filePath, 0, string.Empty, correctSecurePassword, devicePasswords, mockFileOperator.Object);
 
             // Assert
-            // No specific assertions needed since we expect the method to simply exit
-            // However, we can assert that no other operations (show, add, remove) were performed
             mockFileOperator.Verify(f => f.Write(It.IsAny<string>(), It.IsAny<List<string>>()), Times.Never);
         }
 
@@ -374,10 +353,9 @@ namespace Password_keeper.test
             var devicePasswords = new List<string> { "Password1", "Password2", "Password3" };
             var filePath = "testFilePath";
 
-            // Mockowanie konsoli
             var consoleInput = new Queue<string>();
-            consoleInput.Enqueue("invalid"); // Invalid option
-            consoleInput.Enqueue("4"); // Exit
+            consoleInput.Enqueue("invalid"); 
+            consoleInput.Enqueue("4"); 
 
             Console.SetIn(new System.IO.StringReader(string.Join(Environment.NewLine, consoleInput)));
             var consoleOutput = new System.IO.StringWriter();
@@ -400,10 +378,9 @@ namespace Password_keeper.test
 
             var app = new App();
 
-            // Mockowanie konsoli
             var consoleInput = new Queue<string>();
-            consoleInput.Enqueue("invalid"); // Invalid option
-            consoleInput.Enqueue("3"); // Exit program
+            consoleInput.Enqueue("invalid"); 
+            consoleInput.Enqueue("3"); 
 
             var consoleOutput = new System.IO.StringWriter();
             Console.SetOut(consoleOutput);
