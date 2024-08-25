@@ -33,18 +33,18 @@
 
                     if (optionDevice == 1)
                     {
-                        var phonePasswords = fileOperator.Read("phone.txt");
-                        deviceTemplate.UseOfDevice("phone.txt", optionPhone, securePassword, correctSecurePassword, phonePasswords, fileOperator);
+                        var phonePasswords = fileOperator.Read("phone.json");
+                        deviceTemplate.UseOfDevice("phone.json", optionPhone, securePassword, correctSecurePassword, phonePasswords, fileOperator);
                     }
                     else if (optionDevice == 2)
                     {
-                        var computerPasswords = fileOperator.Read("computer.txt");
-                        deviceTemplate.UseOfDevice("computer.txt", optionComputer, securePassword, correctSecurePassword, computerPasswords, fileOperator);
+                        var computerPasswords = fileOperator.Read("computer.json");
+                        deviceTemplate.UseOfDevice("computer.json", optionComputer, securePassword, correctSecurePassword, computerPasswords, fileOperator);
                     }
                     else if (optionDevice == 3)
                     {
-                        var othersPasswords = fileOperator.Read("others.txt");
-                        deviceTemplate.UseOfDevice("others.txt", optionOthers, securePassword, correctSecurePassword, othersPasswords, fileOperator);
+                        var othersPasswords = fileOperator.Read("others.json");
+                        deviceTemplate.UseOfDevice("others.json", optionOthers, securePassword, correctSecurePassword, othersPasswords, fileOperator);
                         Console.WriteLine();
                     }
                     Console.WriteLine();

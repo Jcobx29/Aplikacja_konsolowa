@@ -1,4 +1,5 @@
 using Moq;
+using System.Text.Json;
 
 namespace Password_keeper.test
 {
@@ -393,6 +394,45 @@ namespace Password_keeper.test
             // Assert
             var output = consoleOutput.ToString();
             Assert.Contains("You have choose a wrong option. Try to put one from above.", output);
+        }
+        
+        [Fact]
+        public void Read_ShouldReturnListOfStrings_WhenJsonFileIsValid()
+        {
+            // Arrange
+            var repository = new StringsJsonRepository();
+            var expectedStrings = new List<string> { "string1", "string2", "string3" };
+            var tempFilePath = Path.GetTempFileName();           
+            File.WriteAllText(tempFilePath, JsonSerializer.Serialize(expectedStrings));
+
+            // Act
+            var result = repository.Read(tempFilePath);
+
+            // Assert
+            Assert.Equal(expectedStrings, result);
+
+            // Clean up
+            File.Delete(tempFilePath);
+        }
+        
+        [Fact]
+        public void Write_ShouldCreateJsonFileWithCorrectContent()
+        {
+            // Arrange
+            var repository = new StringsJsonRepository();
+            var stringsToWrite = new List<string> { "string1", "string2", "string3" };
+            var tempFilePath = Path.GetTempFileName();
+
+            // Act
+            repository.Write(tempFilePath, stringsToWrite);
+
+            // Assert
+            var fileContents = File.ReadAllText(tempFilePath);
+            var deserializedStrings = JsonSerializer.Deserialize<List<string>>(fileContents);
+            Assert.Equal(stringsToWrite, deserializedStrings);
+
+            // Clean up
+            File.Delete(tempFilePath);
         }
     }
 }
